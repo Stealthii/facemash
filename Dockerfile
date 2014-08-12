@@ -16,7 +16,7 @@ from ubuntu:precise
 
 maintainer Dockerfiles
 
-run echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
+#run echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 run apt-get update
 run apt-get install -y build-essential git
 run apt-get install -y python python-dev python-setuptools
@@ -29,7 +29,7 @@ run pip install uwsgi
 # install nginx
 run apt-get install -y python-software-properties
 run apt-get update
-RUN add-apt-repository -y ppa:nginx/stable
+run add-apt-repository -y ppa:nginx/stable
 run apt-get install -y sqlite3
 
 # install our code
@@ -46,7 +46,7 @@ run pip install -r /home/docker/code/app/requirements.txt
 
 # install django, normally you would remove this step because your project would already
 # be installed in the code/app/ directory
-run django-admin.py startproject website /home/docker/code/app/ 
+#run django-admin.py startproject website /home/docker/code/app/ 
 
 expose 80
 cmd ["supervisord", "-n"]
