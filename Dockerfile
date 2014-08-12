@@ -12,11 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from ubuntu:precise
+from ubuntu:14.04
 
 maintainer Dockerfiles
 
 #run echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
+run perl -p -i.orig -e 's/archive.ubuntu.com/mirrors.aliyun.com\/ubuntu/' /etc/apt/sources.list
 run apt-get update
 run apt-get install -y build-essential git
 run apt-get install -y python python-dev python-setuptools
