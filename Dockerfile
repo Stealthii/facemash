@@ -1,6 +1,6 @@
 FROM debian:jessie
 
-RUN (apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y python python-dev python-pip nginx sqlite3 supervisor uwsgi)
+RUN (apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y python python-dev python-pip nginx sqlite3 supervisor uwsgi uwsgi-plugin-python)
 
 # install our code
 ADD app /opt/flask/app
