@@ -10,6 +10,7 @@ RUN mkdir /srv/media
 # setup all the configfiles
 ADD ./supervisord.conf /etc/supervisord.conf
 ADD ./nginx.conf /etc/nginx/nginx.conf
+ADD ./uwsgi.ini /etc/uwsgi.ini
 
 # run pip install
 run pip install -r /opt/flask/app/requirements.txt
