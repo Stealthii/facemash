@@ -8,10 +8,8 @@ ADD static /srv/static
 RUN mkdir /srv/media
 
 # setup all the configfiles
-run echo "daemon off;" >> /etc/nginx/nginx.conf
-run rm /etc/nginx/sites-enabled/default
-run ln -s /opt/flask/nginx-app.conf /etc/nginx/sites-enabled/
-run ln -s /opt/flask/supervisor-app.conf /etc/supervisor/conf.d/
+ADD ./supervisord.conf /etc/supervisord.conf
+ADD ./nginx.conf /etc/nginx/nginx.conf
 
 # run pip install
 run pip install -r /opt/flask/app/requirements.txt
@@ -20,5 +18,8 @@ run pip install -r /opt/flask/app/requirements.txt
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
+# restart nginx to load the config
+RUN service nginx stop
+
 expose 80
-cmd ["supervisord", "-n"]
+CMD ["supervisord", "-c", "/etc/supervisord.conf", "-n"]
