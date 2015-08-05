@@ -16,5 +16,9 @@ run ln -s /opt/flask/supervisor-app.conf /etc/supervisor/conf.d/
 # run pip install
 run pip install -r /opt/flask/app/requirements.txt
 
+# forward request and error logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/nginx/access.log
+RUN ln -sf /dev/stderr /var/log/nginx/error.log
+
 expose 80
 cmd ["supervisord", "-n"]
