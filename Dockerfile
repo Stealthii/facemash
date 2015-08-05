@@ -1,11 +1,11 @@
 FROM debian:jessie
 
-RUN (apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y python python-dev python-setuptools nginx sqlite3 supervisor)
-RUN (easy_install pip &&\
-  pip install uwsgi)
+RUN (apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y python python-dev python-pip nginx sqlite3 supervisor uwsgi)
 
 # install our code
-add . /opt/flask/
+ADD app /opt/flask/app
+ADD static /srv/static
+RUN mkdir /srv/media
 
 # setup all the configfiles
 run echo "daemon off;" >> /etc/nginx/nginx.conf
