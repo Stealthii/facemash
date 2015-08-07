@@ -31,7 +31,7 @@
 
     <div class="container">
         <div class="section">
-            <form action="#">
+            <form id="upload-form" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="container col l6 s12">
                         <h2>Geez a head</h2>
@@ -40,7 +40,7 @@
                                 <input class="file-path validate" type="text"/>
                                 <div class="btn">
                                     <span>Upload head image</span>
-                                    <input type="file" />
+                                    <input type="file" id="head-file"/>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                                 <input class="file-path validate" type="text"/>
                                 <div class="btn">
                                     <span>Upload face image</span>
-                                    <input type="file" />
+                                    <input type="file" id="face-file"/>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="section"></div>
                     <div class="section center-align">
-                        <a class="waves-effect waves-light btn-large"><i class="material-icons left">send</i>Submit</a>
+                        <a class="waves-effect waves-light btn-large" onclick="send()"><i class="material-icons left">send</i>Submit</a>
                     </div>
                 </div>
             </form>
@@ -81,6 +81,22 @@
 
     <script>
         $('.parallax').parallax();
+        var send = function() {
+            var formData = new FormData($('#upload-form'));
+            $.ajax({
+                type: 'POST',
+                url: '/',
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                async: false,
+                success: function(data) {
+                    console.log('Success!');
+                },
+            });
+            console.log(formData);
+        }
     </script>
 
 </body>
