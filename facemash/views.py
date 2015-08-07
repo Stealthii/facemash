@@ -16,17 +16,17 @@ from facemash import app
 def index():
     if request.method == 'POST':
         # Get the files
-        if request.form.has_key('head_url'):
-            head_image = get_image_from_url(request.form.get('head_url'))
-        elif request.files.has_key('head_upload'):
-            head_image = request.files.get('head_upload')
+        if request.form.has_key('head-url'):
+            head_image = get_image_from_url(request.form.get('head-url'))
+        elif request.files.has_key('head-file'):
+            head_image = request.files.get('head-file')
         else:
             complain("No head image")
 
-        if request.form.has_key('face_url'):
-            face_image = get_image_from_url(request.form.get('face_url'))
-        elif request.files.has_key('face_upload'):
-            face_image = request.files.get('face_upload')
+        if request.form.has_key('face-url'):
+            face_image = get_image_from_url(request.form.get('face-url'))
+        elif request.files.has_key('face-file'):
+            face_image = request.files.get('face-file')
         else:
             complain("No face image")
 
