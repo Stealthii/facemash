@@ -29,8 +29,6 @@ See the above for an explanation of the code below.
 
 The script has been modified to enable use as a library.
 """
-# stdlib imports
-from cStringIO import StringIO
 
 # third-party imports
 import cv2
@@ -161,15 +159,20 @@ def transformation_from_points(points1, points2):
                          numpy.matrix([0., 0., 1.])])
 
 
-def read_im_and_landmarks(img):
-    #img.seek(0)
+def img_to_array(img):
     img_array = numpy.asarray(bytearray(img.read()), dtype=numpy.uint8)
     im = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
     im = cv2.resize(im, (im.shape[1] * SCALE_FACTOR,
                          im.shape[0] * SCALE_FACTOR))
-    s = get_landmarks(im)
 
-    return im, s
+    return im
+
+
+def read_im_and_landmarks(img):
+    im = img_to_array(img)
+    landmarks = get_landmarks(im)
+
+    return im, landmarks
 
 
 def warp_im(im, M, dshape):
