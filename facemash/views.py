@@ -3,14 +3,13 @@
 from cStringIO import StringIO
 
 import faceswap
-from flask import Flask
 from flask import request
 from flask import send_file
 import requests
 import tempfile
 
 
-app = Flask(__name__, static_folder='/srv/static')
+from facemash import app
 
 
 @app.route('/', methods=['GET', 'POST'])
