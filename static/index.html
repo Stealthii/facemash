@@ -85,7 +85,7 @@
         $( '#upload-form' )
           .submit( function( e ) {
             $.ajax( {
-              url: '/',
+              url: '/upload',
               type: 'POST',
               data: new FormData( this ),
               processData: false,

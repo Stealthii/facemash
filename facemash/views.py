@@ -12,35 +12,47 @@ import tempfile
 from facemash import app
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        # Get the files
-        if request.form.has_key('head-url'):
-            head_image = get_image_from_url(request.form.get('head-url'))
-        elif request.files.has_key('head-file'):
-            head_image = request.files.get('head-file')
-        else:
-            complain("No head image")
-
-        if request.form.has_key('face-url'):
-            face_image = get_image_from_url(request.form.get('face-url'))
-        elif request.files.has_key('face-file'):
-            face_image = request.files.get('face-file')
-        else:
-            complain("No face image")
-
-        # Do the merge
-        merged_image = faceswap.merge_images(head_image, face_image)
-        return send_file(
-            StringIO(merged_image),
-            attachment_filename="test.jpg",
-            as_attachment=False
-        )
-
+@app.route('/upload', methods=['POST'])
+def upload():
+    # Get the files
+    if request.form.has_key('head-url'):
+        head_image = get_image_from_url(request.form.get('head-url'))
+    elif request.files.has_key('head-file'):
+        print "We got a head"
+        head_image = request.files.get('head-file')
+        print "head assigned"
+        if not head_image:
+            print "definitely"
     else:
-        # Show merge form
-        return app.send_static_file('index.html')
+        complain("No head image")
+
+    if request.form.has_key('face-url'):
+        face_image = get_image_from_url(request.form.get('face-url'))
+    elif request.files.has_key('face-file'):
+        print "We got a face"
+        face_image = request.files.get('face-file')
+        print "Face assigned"
+        if not face_image:
+            print "definitely"
+    else:
+        complain("No face image")
+
+    if not head_image:
+        print "what the fuck, where head gone?"
+
+    # Do the merge
+    merged_image = faceswap.merge_images(head_image, face_image)
+    return send_file(
+        StringIO(merged_image),
+        attachment_filename="test.jpg",
+        as_attachment=False
+    )
+
+
+@app.route('/', methods=['GET'])
+def index():
+    # Show merge form
+    return app.send_static_file('index.html')
 
 
 def get_image_from_url(url):
