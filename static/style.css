@@ -1,0 +1,58 @@
+html{
+  box-sizing: border-box;
+
+}
+
+*{
+  margin:0;
+  padding:0;
+}
+
+body{
+  background-color: black;
+  color: white;
+  font-weight:300;
+}
+
+#head-file-input, #face-file-input {
+    display: none;
+}
+
+#head-file-button, #face-file-button {
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    /*margin: 0px auto;*/
+    margin: 2em 10%;
+    padding: 1em;
+    /*height: 2em;*/
+    width: 80%;
+    color: white;
+    border: 3px solid white;
+}
+
+.submit-section {
+    background-color: white;
+    width: 100%;
+    height: 30%;
+    position: absolute;
+    bottom: 0;
+}
+
+#submit-btn, #restart-btn {
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    margin: 2em 10%;
+    padding: 1em;
+    width: 80%;
+    color: black;
+    border: 3px solid black;
+    background-color: white;
+}
+
+.result-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

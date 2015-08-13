@@ -9,64 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <link rel="stylesheet" href="static/style.css">
+
     <!-- Compiled and minified JavaScript -->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-
-    <style>
-        html{
-          box-sizing: border-box;
-
-        }
-
-        *{
-          margin:0;
-          padding:0;
-        }
-
-        body{
-          background-color: black;
-          color: white;
-          font-weight:300;
-        }
-
-        #head-file-input, #face-file-input {
-            display: none;
-        }
-
-        #head-file-button, #face-file-button {
-            text-align: center;
-            display: inline-block;
-            text-decoration: none;
-            /*margin: 0px auto;*/
-            margin: 2em 10%;
-            padding: 1em;
-            /*height: 2em;*/
-            width: 80%;
-            color: white;
-            border: 3px solid white;
-        }
-
-        .submit-section {
-            background-color: white;
-            width: 100%;
-            height: 30%;
-            position: absolute;
-            bottom: 0;
-        }
-
-        #submit-btn {
-            text-align: center;
-            display: inline-block;
-            text-decoration: none;
-            margin: 2em 10%;
-            padding: 1em;
-            width: 80%;
-            color: black;
-            border: 3px solid black;
-            background-color: white;
-        }
-    </style>
 </head>
 <body>
 
@@ -134,10 +81,6 @@
             $(fakeFaceBut).text(fileName);
         });
 
-        $('#back-btn').click(function(e) {
-            history.back();
-        });
-
         $('#upload-form').submit( function( e ) {
             $('#submit-btn').text('Mashing...');
             $.ajax( {
@@ -147,12 +90,12 @@
                 processData: false,
                 contentType: false,
                 success: function(data) {
-                    $('#main-content').html('<img src="'+data+'"><hr><button type="submit" id="back-btn" class="back-button">MASH</button>');
+                    $('#main-content').html(data);
                 },
-                error: function(error) {
+                error: function(xhr, textStatus, errorThrown) {
                     console.log(error);
-                    $('#loader').hide();
-                    $('#errors').text(error);
+                    $('#submit-btn').text('MASH');
+                    $('#errors').text(xhr.responseText);
                 }
             } );
             e.preventDefault();
