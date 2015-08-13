@@ -15,33 +15,20 @@ from facemash import app
 @app.route('/upload', methods=['POST'])
 def upload():
     # Get the files
-    if request.form.has_key('head-url'):
-        head_image = get_image_from_url(request.form.get('head-url'))
-    elif request.files.has_key('head-file'):
-        print "We got a head"
-        head_image = request.files.get('head-file')
-        print "head assigned"
-        if not head_image:
-            print "definitely"
+    if not request.files['head-file'].filename == '':
+        head_image = request.files['head-file']
     else:
         complain("No head image")
-
-    if request.form.has_key('face-url'):
-        face_image = get_image_from_url(request.form.get('face-url'))
-    elif request.files.has_key('face-file'):
-        print "We got a face"
-        face_image = request.files.get('face-file')
-        print "Face assigned"
-        if not face_image:
-            print "definitely"
+    if not request.files['face-file'].filename == '':
+        face_image = request.files['face-file']
     else:
         complain("No face image")
 
-    if not head_image:
-        print "what the fuck, where head gone?"
-
     # Do the merge
-    merged_image = faceswap.merge_images(head_image, face_image)
+    try:
+        merged_image = faceswap.merge_images(head_image, face_image)
+    except:
+        raise
     return send_file(
         StringIO(merged_image),
         attachment_filename="test.jpg",
