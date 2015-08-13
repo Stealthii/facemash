@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FACE MASH</title>
+    <title>+facemash</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 
      <!-- Compiled and minified CSS -->
@@ -12,85 +12,134 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+
+    <style>
+        html{
+          box-sizing: border-box;
+
+        }
+
+        *{
+          margin:0;
+          padding:0;
+        }
+
+        body{
+          background-color: black;
+          color: white;
+          font-weight:300;
+        }
+
+        #head-file-input, #face-file-input {
+            display: none;
+        }
+
+        #head-file-button, #face-file-button {
+            text-align: center;
+            display: inline-block;
+            text-decoration: none;
+            /*margin: 0px auto;*/
+            margin: 2em 10%;
+            padding: 1em;
+            /*height: 2em;*/
+            width: 80%;
+            color: white;
+            border: 3px solid white;
+        }
+
+        .submit-section {
+            background-color: white;
+            width: 100%;
+            height: 30%;
+            position: absolute;
+            bottom: 0;
+        }
+
+        #submit-btn {
+            text-align: center;
+            display: inline-block;
+            text-decoration: none;
+            margin: 2em 10%;
+            padding: 1em;
+            width: 80%;
+            color: black;
+            border: 3px solid black;
+            background-color: white;
+        }
+    </style>
 </head>
 <body>
 
-    <div id="index-banner" class="parallax-container">
-        <div class="section no-pad-bot">
-            <div class="container">
-                <br><br>
-                <h1 class="header center teal-text text-lighten-2">FACE MASH</h1>
-                <div class="row center">
-                    <h5 class="header col s12 light white-text">Where your fellow rehabbers copulate and have babies.</h5>
-                </div>
-                <br><br>
-            </div>
+    <div id="index-banner">
+        <div class="container">
+            <br><br>
+            <h1 class="header center white-text text-lighten-2">:^D</h1>
+            <h1 class="header center white-text text-lighten-2">+facemash</h1>
+            <br><br>
         </div>
-        <div class="parallax"><img src="/static/ricky-header.png" alt="Unsplashed background img 1"></div>
     </div>
 
-    <div class="container">
-        <div class="section">
+    <div class="">
+        <div id="main-content" class="">
             <form id="upload-form" enctype=multipart/form-data>
-                <span>Upload head image</span>
-                 <input type=file name=head-file>
-                 <span>Upload face image</span>
-                 <input type=file name=face-file>
-                 <input type=submit value=Upload>
-            </form>
-            <!-- <form id="upload-form" method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="container col l6 s12">
-                        <h2>Geez a head</h2>
-                        <div class="row">
-                            <div class="file-field input-field col l11 s12">
-                                <input class="file-path validate" type="text"/>
-                                <div class="btn">
-                                    <span>Upload head image</span>
-                                    <input type="file" id="head-file"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12 l11">
-                                <input id="head-url" type="url" class="validate">
-                                <label for="head-url">Head image URL</label>
-                            </div>
-                        </div>
-                    </div>
+                 <div class="">
+                     <div class="">
+                         <div class="">
+                             <input type="file" id="head-file-input" name="head-file"/>
+                             <a href="#" id="head-file-button">UPLOAD HEAD IMAGE</a>
+                         </div>
+                     </div>
+                 </div>
 
-                    <div class="container col l6 s12">
-                        <h2>Geez a face</h2>
-                        <div class="row">
-                            <div class="file-field input-field col l11 s12">
-                                <input class="file-path validate" type="text"/>
-                                <div class="btn">
-                                    <span>Upload face image</span>
-                                    <input type="file" id="face-file"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12 l11">
-                                <input id="face-url" type="url" class="validate">
-                                <label for="face-url">Face image URL</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="section"></div>
-                    <div class="section center-align">
-                        <button type="submit" class="waves-effect waves-light btn-large" ><i class="material-icons left">send</i>Submit</button>
-                    </div>
-                </div>
-            </form> -->
+                 <div class="">
+                     <div class="">
+                         <div class="">
+                             <input type="file" id="face-file-input" name="face-file"/>
+                             <a href="#" id="face-file-button">UPLOAD FACE IMAGE</a>
+                         </div>
+                     </div>
+                 </div>
+
+                 <div class="submit-section ">
+                     <button type="submit" id="submit-btn" class="submit-button">MASH</button>
+                     <div id="errors"></div>
+                 </div>
+            </form>
+
         </div>
     </div>
 
     <script>
-        $('.parallax').parallax();
 
+        var fakeHeadBut = document.getElementById('head-file-button'),
+        realHeadInput = document.getElementById('head-file-input'),
+        fakeFaceBut = document.getElementById('face-file-button'),
+        realFaceInput = document.getElementById('face-file-input');
+
+        fakeHeadBut.addEventListener('click', function(e) {
+            realHeadInput.click();
+        });
+
+        fakeFaceBut.addEventListener('click', function(e) {
+            realFaceInput.click();
+        });
+
+        $(realHeadInput).change(function (){
+            var fileName = $(this).val().split('\\').pop();
+            $(fakeHeadBut).text(fileName);
+        });
+
+        $(realFaceInput).change(function (){
+            var fileName = $(this).val().split('\\').pop();
+            $(fakeFaceBut).text(fileName);
+        });
+
+        $('#back-btn').click(function(e) {
+            history.back();
+        });
 
         $('#upload-form').submit( function( e ) {
+            $('#submit-btn').text('Mashing...');
             $.ajax( {
                 url: '/upload',
                 type: 'POST',
@@ -98,10 +147,12 @@
                 processData: false,
                 contentType: false,
                 success: function(data) {
-                    console.log('Success!', data);
+                    $('#main-content').html('<img src="'+data+'"><hr><button type="submit" id="back-btn" class="back-button">MASH</button>');
                 },
                 error: function(error) {
                     console.log(error);
+                    $('#loader').hide();
+                    $('#errors').text(error);
                 }
             } );
             e.preventDefault();
