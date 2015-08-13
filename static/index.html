@@ -31,7 +31,14 @@
 
     <div class="container">
         <div class="section">
-            <form id="upload-form" method="post" enctype="multipart/form-data">
+            <form id="upload-form" enctype=multipart/form-data>
+                <span>Upload head image</span>
+                 <input type=file name=head-file>
+                 <span>Upload face image</span>
+                 <input type=file name=face-file>
+                 <input type=submit value=Upload>
+            </form>
+            <!-- <form id="upload-form" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="container col l6 s12">
                         <h2>Geez a head</h2>
@@ -44,12 +51,12 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="row">
+                        <div class="row">
                             <div class="input-field col s12 l11">
                                 <input id="head-url" type="url" class="validate">
                                 <label for="head-url">Head image URL</label>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
 
                     <div class="container col l6 s12">
@@ -63,56 +70,42 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="row">
+                        <div class="row">
                             <div class="input-field col s12 l11">
                                 <input id="face-url" type="url" class="validate">
                                 <label for="face-url">Face image URL</label>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                     <div class="section"></div>
                     <div class="section center-align">
                         <button type="submit" class="waves-effect waves-light btn-large" ><i class="material-icons left">send</i>Submit</button>
                     </div>
                 </div>
-            </form>
+            </form> -->
         </div>
     </div>
 
     <script>
         $('.parallax').parallax();
 
-        $( '#upload-form' )
-          .submit( function( e ) {
+
+        $('#upload-form').submit( function( e ) {
             $.ajax( {
-              url: '/upload',
-              type: 'POST',
-              data: new FormData( this ),
-              processData: false,
-              contentType: false,
-              success: function(data) {
-                  console.log('Success!');
-              },
+                url: '/upload',
+                type: 'POST',
+                data: new FormData( this ),
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    console.log('Success!', data);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
             } );
             e.preventDefault();
-          } );
-
-        // var send = function() {
-        //     var formData = new FormData($('#upload-form')[0]);
-        //     $.ajax({
-        //         type: 'POST',
-        //         url: '/',
-        //         data: formData,
-        //         contentType: false,
-        //         cache: false,
-        //         processData: false,
-        //         async: false,
-        //         success: function(data) {
-        //             console.log('Success!');
-        //         },
-        //     });
-        //     console.log(formData);
-        // }
+        } );
 
 
     </script>
