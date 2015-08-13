@@ -44,12 +44,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="input-field col s12 l11">
                                 <input id="head-url" type="url" class="validate">
                                 <label for="head-url">Head image URL</label>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="container col l6 s12">
@@ -63,16 +63,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="input-field col s12 l11">
                                 <input id="face-url" type="url" class="validate">
                                 <label for="face-url">Face image URL</label>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="section"></div>
                     <div class="section center-align">
-                        <a class="waves-effect waves-light btn-large" onclick="send()"><i class="material-icons left">send</i>Submit</a>
+                        <button type="submit" class="waves-effect waves-light btn-large" ><i class="material-icons left">send</i>Submit</button>
                     </div>
                 </div>
             </form>
@@ -81,22 +81,40 @@
 
     <script>
         $('.parallax').parallax();
-        var send = function() {
-            var formData = new FormData($('#upload-form'));
-            $.ajax({
-                type: 'POST',
-                url: '/',
-                data: formData,
-                contentType: false,
-                cache: false,
-                processData: false,
-                async: false,
-                success: function(data) {
-                    console.log('Success!');
-                },
-            });
-            console.log(formData);
-        }
+
+        $( '#upload-form' )
+          .submit( function( e ) {
+            $.ajax( {
+              url: '/',
+              type: 'POST',
+              data: new FormData( this ),
+              processData: false,
+              contentType: false,
+              success: function(data) {
+                  console.log('Success!');
+              },
+            } );
+            e.preventDefault();
+          } );
+
+        // var send = function() {
+        //     var formData = new FormData($('#upload-form')[0]);
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: '/',
+        //         data: formData,
+        //         contentType: false,
+        //         cache: false,
+        //         processData: false,
+        //         async: false,
+        //         success: function(data) {
+        //             console.log('Success!');
+        //         },
+        //     });
+        //     console.log(formData);
+        // }
+
+
     </script>
 
 </body>
