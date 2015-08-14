@@ -26,7 +26,7 @@ def upload():
     try:
         merged_image = faceswap.merge_images(head_image, face_image)
     except:
-        raise
+        complain("Couldn't detect a face in one of the photos, sorry!")
 
     filename = time.strftime("%Y%m%d-%H%M%S") + ".jpg"
     filepath = os.path.join("/srv/media", filename)
