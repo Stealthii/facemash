@@ -61,7 +61,7 @@ text-align: center;
   box-sizing: border-box;
 }
 
-#submit-btn, #restart-btn {
+#submit-btn {
   text-align: center;
   display: inline-block;
   text-decoration: none;
@@ -72,6 +72,19 @@ text-align: center;
   color: black;
   border: 3px solid black;
   background-color: white;
+}
+
+#restart-btn {
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1em;
+    margin: 2em 10%;
+    padding: 1em;
+    width: 70%;
+    color: black;
+    border: 3px solid black;
+    background-color: white;
 }
 
 .result-img {
