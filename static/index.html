@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 
      <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css"> -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="static/style.css">
@@ -18,18 +18,19 @@
 <body>
 
     <div id="index-banner">
-        <div class="container">
+        <div class="">
             <br><br>
-            <h1 class="header center white-text text-lighten-2">:^D</h1>
-            <h1 class="header center white-text text-lighten-2">+facemash</h1>
+            <h1 class="title"><span class="blue-title">:</span><span class="yellow-title">^</span><span class="red-title">D</span></h1>
+            <h1 class="title">+facemash</h1>
             <br><br>
         </div>
     </div>
 
     <div class="">
-        <div id="main-content" class="">
+        <div id="main-content" class="main">
             <form id="upload-form" enctype=multipart/form-data>
-                 <div class="">
+              <div class="inputs">
+                 <div class="flex-row">
                      <div class="">
                          <div class="">
                              <input type="file" id="head-file-input" name="head-file"/>
@@ -38,7 +39,7 @@
                      </div>
                  </div>
 
-                 <div class="">
+                 <div class="flex-row">
                      <div class="">
                          <div class="">
                              <input type="file" id="face-file-input" name="face-file"/>
@@ -46,63 +47,19 @@
                          </div>
                      </div>
                  </div>
+               </div>
 
-                 <div class="submit-section ">
+                 <div class="submit-section flex-row">
                      <button type="submit" id="submit-btn" class="submit-button">MASH</button>
                      <div id="errors"></div>
+                     <div class="footer">+rehabstudio</div>
                  </div>
             </form>
 
         </div>
     </div>
 
-    <script>
-
-        var fakeHeadBut = document.getElementById('head-file-button'),
-        realHeadInput = document.getElementById('head-file-input'),
-        fakeFaceBut = document.getElementById('face-file-button'),
-        realFaceInput = document.getElementById('face-file-input');
-
-        fakeHeadBut.addEventListener('click', function(e) {
-            realHeadInput.click();
-        });
-
-        fakeFaceBut.addEventListener('click', function(e) {
-            realFaceInput.click();
-        });
-
-        $(realHeadInput).change(function (){
-            var fileName = $(this).val().split('\\').pop();
-            $(fakeHeadBut).text(fileName);
-        });
-
-        $(realFaceInput).change(function (){
-            var fileName = $(this).val().split('\\').pop();
-            $(fakeFaceBut).text(fileName);
-        });
-
-        $('#upload-form').submit( function( e ) {
-            $('#submit-btn').text('Mashing...');
-            $.ajax( {
-                url: '/upload',
-                type: 'POST',
-                data: new FormData( this ),
-                processData: false,
-                contentType: false,
-                success: function(data) {
-                    $('#main-content').html(data);
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    console.log(error);
-                    $('#submit-btn').text('MASH');
-                    $('#errors').text(xhr.responseText);
-                }
-            } );
-            e.preventDefault();
-        } );
-
-
-    </script>
+    <script src="static/script.js"></script>
 
 </body>
 </html>
