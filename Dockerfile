@@ -35,4 +35,4 @@ ADD static /srv/static
 RUN mkdir -p /srv/media
 
 expose 80
-CMD ["supervisord", "-c", "/etc/supervisord.conf", "-n"]
+CMD ["sh -c 'ln -s /dev/null /dev/raw1394';" "supervisord", "-c", "/etc/supervisord.conf", "-n"]
